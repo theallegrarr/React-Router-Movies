@@ -5,7 +5,7 @@ Topics:
 * React Router
 * Using Link and NavLink to navigate to specific routes
 * Passing Route Parameters
-* Passing props to components rendered by the Router
+* Passing props to components rendered by the Router 
 
 ## Instructions
 
