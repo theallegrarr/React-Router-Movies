@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+// import ReactDOM from 'react-dom';
+// import Movie from './Movie';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 const MovieList = props => {
   const [movies, setMovies] = useState([])
@@ -9,6 +12,7 @@ const MovieList = props => {
         .get('http://localhost:5000/api/movies')
         .then(response => {
           setMovies(response.data);
+          //console.log(response.data);
         })
         .catch(error => {
           console.error('Server Error', error);
@@ -18,20 +22,28 @@ const MovieList = props => {
     getMovies();
   }, []);
   
+  // const navigate = (e, to) => {
+  //   e.preventDefault();
+  //   history.pushState(null, null, to);
+  // };
+
   return (
     <div className="movie-list">
-      {movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
-      ))}
+      { 
+        movies.map(movie => (
+          <MovieDetails key={movie.id} movie={movie}/>
+        ))
+      }
     </div>
   );
 }
 
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
+  console.log(movie);
   return (
-    <div className="movie-card">
-      <h2>{title}</h2>
+    <div className="movie-card" onClick={() => console.log(movie)} >
+      <NavLink key={movie.id} to={'/movies/' + movie.id}><h2>{title}</h2></NavLink>
       <div className="movie-director">
         Director: <em>{director}</em>
       </div>
