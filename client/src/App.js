@@ -15,15 +15,10 @@ const App = () => {
   return (
     <div>
       <SavedList list={savedList} />
-      <Route path="/" component={MovieList} />
+      <Route exact path="/" component={MovieList} />
       <Route path="/movies/:id" render={props => {
         const currentId = props.match.params.id;
-
-        //console.log(MovieList;
-        // const MovieObject = MovieList.find(movie => {
-        //   return movie.id === currentId;
-        // })
-
+        
         return <Movie id={currentId} />
       }} />
     </div>
